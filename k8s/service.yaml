@@ -2,9 +2,12 @@ apiVersion: v1
 kind: Service
 metadata:
   name: python-devops-service
+  namespace: python-devops-e2e
+  labels:
+    app: python-devops-e2e
 spec:
   selector:
-    app: python-devops
+    app: python-devops-e2e
   type: NodePort
   ports:
     - protocol: TCP
