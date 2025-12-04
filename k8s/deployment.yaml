@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: python-devops-e2e-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: python-devops
+  template:
+    metadata:
+      labels:
+        app: python-devops
+    spec:
+      imagePullSecrets:
+        - name: ecr-secret
+      containers:
+        - name: python-devops
+          image: 481317144779.dkr.ecr.us-east-1.amazonaws.com/python-devops-e2e-repo:latest
+          ports:
+            - containerPort: 5000
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 5000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 5000
+            initialDelaySeconds: 10
+            periodSeconds: 10
+
+
+
+
