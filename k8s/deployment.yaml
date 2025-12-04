@@ -18,7 +18,7 @@ spec:
       imagePullSecrets:
         - name: ecr-secret
       containers:
-        - name: python-devops
+        - name: python-devops-e2e
           image: 481317144779.dkr.ecr.us-east-1.amazonaws.com/python-devops-e2e-repo:latest
           imagePullPolicy: Always
           ports:
