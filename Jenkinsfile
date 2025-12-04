@@ -72,13 +72,26 @@ pipeline {
             }
         }
 
-        stage('Deploy (Local K8s)') {
-            steps {
-                sh '''
-                #!/bin/bash
-                kubectl set image deployment/python-devops-e2e-deployment \
-                    python-devops-e2e=$ECR_REPO:latest --record || true
-                '''
+       stage('Deploy (Local K8s)') {
+    steps {
+        sh '''
+        #!/bin/bash
+        set -e
+
+        echo "Applying Kubernetes manifests..."
+        kubectl apply -f k8s/deployment.yaml
+        kubectl apply -f k8s/service.yaml
+
+        echo "Updating deployment image..."
+        kubectl set image deployment/python-devops-e2e-deployment \
+            python-devops-e2e=$ECR_REPO:latest --record
+
+        echo "Waiting for rollout to finish..."
+        kubectl rollout status deployment/python-devops-e2e-deployment
+        '''
+    }
+}
+
             }
         }
     }
