@@ -12,14 +12,20 @@ pipeline {
         stage('Checkout') { 
             steps { 
                 checkout scm 
-            } 
+            }
         }
 
         stage('Test') {
             steps {
-                sh 'python -m venv venv || true'
-                sh 'source venv/bin/activate && pip install -r requirements.txt'
-                sh 'pytest -q || true'
+                // Use bash shell always
+                sh '''
+                #!/bin/bash
+                python3 -m venv venv
+                source venv/bin/activate
+                pip install --upgrade pip
+                pip install -r requirements.txt
+                pytest || true
+                '''
             }
         }
 
@@ -35,7 +41,9 @@ pipeline {
                     string(credentialsId: 'aws-access-key', variable: 'AWS_ACCESS_KEY_ID'),
                     string(credentialsId: 'aws-secret-key', variable: 'AWS_SECRET_ACCESS_KEY')
                 ]) {
+
                     sh '''
+                    #!/bin/bash
                     aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
                     aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
                     aws configure set default.region $AWS_REGION
@@ -49,14 +57,19 @@ pipeline {
 
         stage('Tag & Push') {
             steps {
-                sh 'docker tag python-devops-e2e:latest $ECR_REPO:latest'
-                sh 'docker push $ECR_REPO:latest'
+                sh '''
+                docker tag python-devops-e2e:latest $ECR_REPO:latest
+                docker push $ECR_REPO:latest
+                '''
             }
         }
 
         stage('Deploy (Local K8s)') {
             steps {
-                sh 'kubectl set image deployment/python-devops-e2e-deployment python-devops-e2e=$ECR_REPO:latest --record || true'
+                sh '''
+                kubectl set image deployment/python-devops-e2e-deployment \
+                python-devops-e2e=$ECR_REPO:latest --record || true
+                '''
             }
         }
     }
