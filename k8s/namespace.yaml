@@ -4,3 +4,7 @@ metadata:
   name: python-devops-e2e
   labels:
     app: python-devops-e2e
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9199726 (Add Kubernetes namespace and update deployment and service)
