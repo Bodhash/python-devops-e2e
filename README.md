@@ -17,7 +17,15 @@ Source Control: GitHub
 
 Developer commits code to GitHub
 Jenkins triggers CI pipeline
-Docker image is built and tested
+Docker image is built and tested:
+### 🔹 Flask Application Output
+> Application running locally and serving API response
+![Flask Output](images/app_output.png)
+
+### 🔹 Kubernetes Deployment
+> Pod running successfully inside Docker desktop cluster
+![K8s Pods](images/k8s_pods.png)
+
 Infrastructure is provisioned using Terraform
 Application is deployed to Kubernetes (Docker Desktop)
 Application exposed via Kubernetes Service
@@ -43,4 +51,4 @@ Environment-agnostic Kubernetes manifests
 Clean Git commit history
 
 📬 Feedback
-Suggestions and improvements are welcome!
+Suggestions and improvements are welcome.
