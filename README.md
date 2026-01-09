@@ -1,34 +1,39 @@
 # End-to-End DevOps Project: AWS + CI + Terraform + Kubernetes + Python
 
 📌 Overview
-End-to-end DevOps demo using Flask → Docker → Jenkins CI/CD → AWS ECR → Kubernetes (Docker desktop). This project demonstrates a complete end-to-end DevOps workflow covering application development, containerization, CI/CD automation, Infrastructure as Code, and Kubernetes deployment using industry-standard tools.
+This project demonstrates an end-to-end DevOps workflow using
+Flask → Docker → Jenkins CI/CD → AWS ECR → Kubernetes (Docker Desktop).
+
+It covers the complete lifecycle including application development, containerization, CI/CD automation, Infrastructure as Code, and Kubernetes-based deployment using industry-standard DevOps tools.
 
 🧰 Tech Stack
 
 Cloud: AWS (Free Tier)
-Programming: Python (3.10 / Flask)
+Programming: Python 3.10 (Flask)
 CI/CD: Jenkins
 Containers: Docker
 Orchestration: Kubernetes (Docker Desktop)
 IaC: Terraform
 Source Control: GitHub
 
-🏗 Architecture Flow
+🏗 Architecture & Workflow
 
 Developer commits code to GitHub
-Jenkins triggers CI pipeline
-Docker image is built and tested:
-### 🔹 Flask Application Output
-> Application running locally and serving API response
-![Flask Output](images/app_output.png)
-
-### 🔹 Kubernetes Deployment
-> Pod running successfully inside Docker desktop cluster
-![K8s Pods](images/k8s_pods.png)
-
-Infrastructure is provisioned using Terraform
+Jenkins pipeline is triggered automatically
+Docker image is built and tested
+Infrastructure is provisioned using Terraform (AWS ECR)
 Application is deployed to Kubernetes (Docker Desktop)
-Application exposed via Kubernetes Service
+Application is exposed using a Kubernetes Service
+
+Note: AWS resources were provisioned and later destroyed to optimize cost.
+Kubernetes deployment was validated locally using Docker Desktop, following production-like workflows similar to EKS.
+
+📸 Execution Proof
+🔹 Flask Application Output
+Application running locally and serving API response
+
+🔹 Kubernetes Deployment
+Pod running successfully inside Docker Desktop Kubernetes cluster
 
 📂 Project Structure
 
@@ -44,11 +49,11 @@ python-devops-e2e/
 
 🔐 Best Practices Followed
 
-Infrastructure as Code (Terraform)
-Containerized application builds
-CI/CD automation with Jenkins
+Infrastructure as Code using Terraform
+Containerized application builds with Docker
+CI/CD automation using Jenkins
 Environment-agnostic Kubernetes manifests
-Clean Git commit history
+Clean Git history and structured repository
 
 📬 Feedback
 Suggestions and improvements are welcome.
