@@ -1,29 +1,46 @@
-# Python DevOps E2E Project
+# End-to-End DevOps Project: AWS + CI + Terraform + Kubernetes + Python
 
-## Overview
-End-to-end DevOps demo using Flask → Docker → Jenkins CI/CD → AWS ECR → Kubernetes (Minikube).
+📌 Overview
+End-to-end DevOps demo using Flask → Docker → Jenkins CI/CD → AWS ECR → Kubernetes (Docker desktop). This project demonstrates a complete end-to-end DevOps workflow covering application development, containerization, CI/CD automation, Infrastructure as Code, and Kubernetes deployment using industry-standard tools.
 
-## Tech Stack
-- Python 3.10 / Flask
-- Docker
-- Jenkins
-- Terraform (AWS ECR)
-- Kubernetes (Minikube / Docker Desktop)
+🧰 Tech Stack
 
-## Run locally
-1. Clone repo
-2. `pip install -r requirements.txt`
-3. `python app/main.py` → check http://localhost:5000
+Cloud: AWS (Free Tier)
+Programming: Python (3.10 / Flask)
+CI/CD: Jenkins
+Containers: Docker
+Orchestration: Kubernetes (Docker Desktop)
+IaC: Terraform
+Source Control: GitHub
 
-## CI/CD
-- Jenkins pipeline automates build, test, image push to ECR, and K8s deployment.
+🏗 Architecture Flow
 
-## AWS
-- Terraform creates ECR repo.
-- Docker image stored in ECR.
+Developer commits code to GitHub
+Jenkins triggers CI pipeline
+Docker image is built and tested
+Infrastructure is provisioned using Terraform
+Application is deployed to Kubernetes (Docker Desktop)
+Application exposed via Kubernetes Service
 
-## Kubernetes
-- Deploy locally on Minikube using `kubectl apply -f k8s/`.
+📂 Project Structure
 
-## Author
-Created for learning DevOps workflow: CI/CD + IaC + Containers + K8s.
+python-devops-e2e/
+│── app/
+│── docker/
+│── k8s/
+│── terraform/
+│── images/
+│── Jenkinsfile
+│── Dockerfile
+│── README.md
+
+🔐 Best Practices Followed
+
+Infrastructure as Code (Terraform)
+Containerized application builds
+CI/CD automation with Jenkins
+Environment-agnostic Kubernetes manifests
+Clean Git commit history
+
+📬 Feedback
+Suggestions and improvements are welcome!
