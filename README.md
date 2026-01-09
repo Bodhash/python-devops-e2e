@@ -56,4 +56,5 @@ Environment-agnostic Kubernetes manifests
 Clean Git history and structured repository
 
 📬 Feedback
+
 Suggestions and improvements are welcome.
